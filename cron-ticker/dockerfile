@@ -1,0 +1,10 @@
+# Imagen principal
+FROM node:19.8-alpine3.17 
+# Por defecto trae una carpeta /app
+WORKDIR /app
+COPY package.json ./
+RUN npm install
+COPY . .
+RUN npm test
+RUN rm -rf tests && rm -rf node_modules
+CMD ["node", "app.js"]
